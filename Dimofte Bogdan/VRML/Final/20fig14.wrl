@@ -1,0 +1,81 @@
+#VRML V2.0 utf8
+# The VRML 2.0 Sourcebook
+# Copyright [1997] By
+# Andrea L. Ames, David R. Nadeau, and John L. Moreland
+Group {
+	children [
+	# Animated sunlight
+		DEF SunLight DirectionalLight {
+			direction  0.8 -0.2 -0.2
+			intensity 1.0
+			ambientIntensity 0.5
+			color 1.0 0.6 0.0
+		},
+	# Animation clock
+		DEF Clock TimeSensor {
+			cycleInterval 10.0
+			loop TRUE
+		},
+	# Animation directions
+		DEF LightDirection PositionInterpolator {
+			key [ 0.0, 0.5, 1.0 ]
+			keyValue [ 0.8 -0.2 -0.2, 0.0 -1.0 -0.2, -0.8 -0.2, -0.2 ]
+		},
+	# Animation colors and ambient intensity
+		DEF LightColor ColorInterpolator {
+			key [ 0.0, 0.5, 1.0 ]
+			keyValue [ 1.0 0.6 0.0, 1.0 0.9 0.7, 1.0 0.3 0.1 ]
+		},
+		DEF LightAmbient ScalarInterpolator {
+			key [ 0.0, 0.5, 1.0 ]
+			keyValue [ 0.3, 0.7, 0.2 ]
+		},
+	# Vaulted ceiling and columns
+		Inline {
+			url "house.wrl"
+			bboxCenter 0.0 2.0 0.0
+			bboxSize   6.0 2.0 6.0
+		},
+#Background 
+		
+Background {
+skyColor [ 0 0 0 ]
+skyAngle [ ]
+groundColor [ ]
+groundAngle [ ]
+backUrl [ ]
+bottomUrl [ ]
+leftUrl [ ]
+rightUrl [ ]
+frontUrl [ ]
+topUrl [ ]
+},
+	
+Sound {
+   source AudioClip {
+      url [ "happy.wav" ]
+      loop TRUE
+   }
+   spatialize TRUE
+   intensity 1
+   minFront 200
+   maxFront 200
+   minBack 200
+   maxBack 200
+},
+	# Floor
+		Shape {
+			appearance Appearance {
+				material Material { }
+				 texture ImageTexture { url "grass.jpg"}
+			}
+			geometry Box { size 400.0 0.01 200.0 }
+		}
+	]
+}
+ROUTE Clock.fraction_changed       TO LightDirection.set_fraction
+ROUTE Clock.fraction_changed       TO LightColor.set_fraction
+ROUTE Clock.fraction_changed       TO LightAmbient.set_fraction
+ROUTE LightDirection.value_changed TO SunLight.set_direction
+ROUTE LightColor.value_changed     TO SunLight.set_color
+ROUTE LightAmbient.value_changed   TO SunLight.set_ambientIntensity
