@@ -1,0 +1,22 @@
+<div id="container">
+    
+    <div class="centered-container">
+        <form (submit)="loginUser($event)">
+            <div>
+                <label style="float:left; margin-left:10%">Username:</label>
+                <input type="text" placeholder="Enter username">
+            </div>
+            <div>
+                <label style="float:left; margin-left:10%">Password:</label>
+                <input type="password" placeholder="Enter password">
+            </div>
+            <div>
+                <input type="submit" class="inputButton" value="Log in">
+            </div>
+            <div>
+                <span class="psw"><a routerLink="/register">Or create a free account</a></span>
+            </div>
+        </form>
+    </div>        
+ 
+</div>
