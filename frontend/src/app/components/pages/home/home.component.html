@@ -1,0 +1,39 @@
+<!-- <body class="bg">
+    <div class="div-top">
+    </div>
+</body> -->
+
+ 
+
+
+
+
+
+
+
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pet of pets">
+        <td>{{pet.Name}}</td>
+        <td>{{pet.Type}}</td>
+        <td><img src="assets/{{pet.ImageName}}"  style="width:150px;height:100px;"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+  <!-- <br/>Name: {{pets[1].Name}}
+  <br/>Title: {{pets[1].Type}}
+  <br/>
+  <br/>Name: {{pets[2].Name}}
+  <br/>Title: {{pets[2].Type}} -->
